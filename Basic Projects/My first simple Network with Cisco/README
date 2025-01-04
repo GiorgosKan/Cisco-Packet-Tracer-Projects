@@ -1,0 +1,19 @@
+Steps:
+1.Building the Network:
+Launch Packet Tracer and add the devices (PC, wireless router, cable modem, Cisco.com server, laptop, internet cloud) to the workspace.
+Connect the devices using appropriate cables, such as copper straight-through cables for wired connections and coaxial for the internet connection to the cloud.
+Ensure that all cables are correctly connected as per the topology diagram.
+
+2.Configuring Network Devices:
+Wireless Router: Configure the wireless network (SSID: HomeNetwork), enable DHCP, and set the DNS server to 208.67.220.220.
+Laptop: Replace the Ethernet module with the wireless module and connect to the "HomeNetwork."
+PC: Configure the PC to use DHCP to receive an IP address from the wireless router.
+Cisco.com Server: Configure the server as both a DHCP and DNS server, with specific settings for IP address, subnet mask, and gateway (208.67.220.220).
+
+3.Configuring the Internet Cloud:
+Add the necessary modules (PT-CLOUD-NM-1CX and PT-CLOUD-NM-1CFE) to the internet cloud for proper connectivity.
+Set the cloud’s configuration to connect the cable modem and the Cisco.com server using copper Ethernet and coaxial cables.
+
+4.Testing Connectivity:
+Refresh the PC's IPv4 settings to ensure it receives the correct IP configuration.
+Test connectivity by pinging the Cisco.com server from the PC.
