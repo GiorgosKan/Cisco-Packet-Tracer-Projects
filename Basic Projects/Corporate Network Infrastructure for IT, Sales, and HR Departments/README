@@ -26,6 +26,8 @@ Each switch isolates department traffic, improving security and performance.
 The local server provides centralized resources for the company, such as web hosting or file storage.
 Additional Notes:
 To enable internet access, the router must be configured with an ISP connection, NAT (Network Address Translation), 
-and DNS servers. This setup allows devices to access external web pages like Google while keeping internal communications secure.
+and DNS servers. 
+
+This setup allows devices to access external web pages like Google while keeping internal communications secure.
 This network architecture highlights the basic structure of a company's network, with segmentation by departments, a local server for internal services, 
 and the capability to scale and connect to the internet when needed.
