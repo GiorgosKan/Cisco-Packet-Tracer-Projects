@@ -8,7 +8,6 @@ It acts as the default gateway for each subnet and enables communication between
 
 Switches (SW1, SW4, SW3):
 Each department is connected to a dedicated switch:
-
 SW1 (IT Department): Connects devices in the 192.168.2.0/24 subnet.
 SW4 (Sales Department): Connects devices in the 192.168.4.0/24 subnet.
 SW3 (HR Department): Connects devices in the 192.168.3.0/24 subnet.
@@ -24,10 +23,9 @@ Functionality:
 The router ensures internal traffic between departments flows seamlessly and can also connect the network to the internet if configured appropriately.
 Each switch isolates department traffic, improving security and performance.
 The local server provides centralized resources for the company, such as web hosting or file storage.
+
 Additional Notes:
 To enable internet access, the router must be configured with an ISP connection, NAT (Network Address Translation), 
-and DNS servers. 
-
-This setup allows devices to access external web pages like Google while keeping internal communications secure.
+and DNS servers.This setup allows devices to access external web pages like Google while keeping internal communications secure.
 This network architecture highlights the basic structure of a company's network, with segmentation by departments, a local server for internal services, 
 and the capability to scale and connect to the internet when needed.
