@@ -6,12 +6,12 @@ Router (R1):
 The central device responsible for interconnecting all department networks and routing traffic between them. 
 It acts as the default gateway for each subnet and enables communication between the local network and external resources.
 
-Switches (SW1, SW4, SW30):
+Switches (SW1, SW4, SW3):
 Each department is connected to a dedicated switch:
 
 SW1 (IT Department): Connects devices in the 192.168.2.0/24 subnet.
 SW4 (Sales Department): Connects devices in the 192.168.4.0/24 subnet.
-SW30 (HR Department): Connects devices in the 192.168.3.0/24 subnet.
+SW3 (HR Department): Connects devices in the 192.168.3.0/24 subnet.
 Server (192.168.1.100):
 A local server providing company-specific services. It is accessible internally by all devices on the network through its IP address.
 The server hosts a webpage with the message: "This is our server network for you!" External users with knowledge of the server’s IP address may also access it,
