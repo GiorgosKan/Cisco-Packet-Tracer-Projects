@@ -1,1 +1,31 @@
+This is a simulated network infrastructure representing a company with three main departments: IT, Sales, and HR. The design ensures that each department operates
+within its own local network while maintaining connectivity across the organization and providing access to a local server.
 
+Network Components:
+Router (R1):
+The central device responsible for interconnecting all department networks and routing traffic between them. 
+It acts as the default gateway for each subnet and enables communication between the local network and external resources.
+
+Switches (SW1, SW4, SW30):
+Each department is connected to a dedicated switch:
+
+SW1 (IT Department): Connects devices in the 192.168.2.0/24 subnet.
+SW4 (Sales Department): Connects devices in the 192.168.4.0/24 subnet.
+SW30 (HR Department): Connects devices in the 192.168.3.0/24 subnet.
+Server (192.168.1.100):
+A local server providing company-specific services. It is accessible internally by all devices on the network through its IP address.
+The server hosts a webpage with the message: "This is our server network for you!" External users with knowledge of the server’s IP address may also access it,
+depending on network security rules.
+
+End Devices:
+Each department has two PCs assigned static IP addresses within its subnet for communication and resource sharing.
+
+Functionality:
+The router ensures internal traffic between departments flows seamlessly and can also connect the network to the internet if configured appropriately.
+Each switch isolates department traffic, improving security and performance.
+The local server provides centralized resources for the company, such as web hosting or file storage.
+Additional Notes:
+To enable internet access, the router must be configured with an ISP connection, NAT (Network Address Translation), 
+and DNS servers. This setup allows devices to access external web pages like Google while keeping internal communications secure.
+This network architecture highlights the basic structure of a company's network, with segmentation by departments, a local server for internal services, 
+and the capability to scale and connect to the internet when needed.
