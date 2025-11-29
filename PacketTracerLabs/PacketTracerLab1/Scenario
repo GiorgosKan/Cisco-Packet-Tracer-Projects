@@ -1,2 +1,95 @@
 We have two routers, Router1 and Router2, connected via their GigabitEthernet0/0 interfaces. 
 We need to configure basic router settings, set a secure password, and observe how Cisco handles password encryption.
+
+----------------------------------
+
+Physically connect Router1 and Router2 using their GigabitEthernet0/0 ports.
+
+Assign custom hostnames to the routers so that Router1 and Router2 can be easily distinguished in the topology.
+
+Configure the privileged mode password on both routers to flower to secure access to enable mode.
+
+Inspect the current running configuration. Can you see the password in plain text?
+
+Activate password encryption on both routers so that plain-text passwords are hidden.
+
+Verify the running configuration again. Is the password now encrypted?
+
+Turn off password encryption for future passwords.
+
+Check the running configuration one more time. Are the previously encrypted passwords still protected?
+
+----------------------------------
+
+Step-by-Step Solution
+
+1. Connect routers
+
+Use a copper straight-through cable between:
+
+Router1 GigabitEthernet0/0 → Router2 GigabitEthernet0/0
+Concept: Physical connectivity is needed before configuring IP or testing.
+
+2. Set hostnames
+
+Router1 - CLI
+enable
+configure terminal
+hostname Router1
+
+Router2 - CLI
+enable
+configure terminal
+hostname Router2
+
+3. Set enable password
+
+Router1
+enable
+configure terminal
+enable password flower
+
+
+Router2
+enable
+configure terminal
+enable password flower
+
+4. View password in running config
+
+CLI
+show running-config
+
+Observation:
+The password is plain text:
+enable password flower
+
+5. Enable password encryption
+
+Router1 & Router2
+configure terminal
+service password-encryption
+
+Concept: Encrypts all plaintext passwords in running config (Type 7).
+
+6. View running config again
+
+show running-config
+
+Observation:
+The password now appears encrypted:
+enable password 7 0822455D0A16
+
+7. Disable password encryption
+
+configure terminal
+no service password-encryption
+Concept: New passwords won’t be encrypted. Existing ones remain encrypted.
+
+8. Check running config
+
+show running-config
+
+Observation:
+Password still encrypted.
+Concept: Disabling the service does not decrypt existing passwords.
