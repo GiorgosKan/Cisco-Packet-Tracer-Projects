@@ -1,1 +1,2 @@
-
+We have two routers, Router1 and Router2, connected via their GigabitEthernet0/0 interfaces. 
+We need to configure basic router settings, set a secure password, and observe how Cisco handles password encryption.
