@@ -1,1 +1,8 @@
+Create 2 VLANs on a switch.
+Assign PCs to different VLANs.
+Configure Inter-VLAN routing on a router using Router-on-a-Stick.
+Test connectivity between PCs in the same VLAN and different VLANs.
 
+Cable type: Copper Straight-Through (PC → Switch), Trunk (Switch → Router)
+Router: Cisco 1941 with HWIC-2T
+Switch: default Packet Tracer switch (FastEthernet ports)
