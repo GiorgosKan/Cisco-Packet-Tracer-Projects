@@ -1,9 +1,123 @@
-Create 2 VLANs on a switch.
-Assign PCs to different VLANs.
-Configure Inter-VLAN routing on a router using Router-on-a-Stick.
-Test connectivity between PCs in the same VLAN and different VLANs.
+Real-life scenario
+Company with 2 departments: Sales and Engineering.
+PCs in each department can communicate internally.
+Communication between departments goes through the router.
+Saves cabling and separates networks while allowing controlled routing.
+
+outer-on-a-Stick
+Definition:
+“Router-on-a-Stick” is a technique for Inter-VLAN routing using a single router interface.
+How it works:
+One physical router interface connects to a trunk port on the switch.
+The router creates subinterfaces for each VLAN.
+Each subinterface gets:
+VLAN ID (encapsulation dot1Q X)
+IP address → default gateway for that VLAN.
+Packets from different VLANs travel through the same physical interface, but the router separates them using VLAN tags and routes them correctly.
+
+Real-life scenario:
+Two VLANs: Sales (10) and Engineering (20).
+Router-on-a-Stick allows a PC in Sales to send packets to Engineering via one interface and one trunk, without needing separate physical ports for each VLAN.
+
+What is a Trunk?
+A trunk is a switch port that can carry traffic from multiple VLANs at the same time.
+Trunk ports use VLAN tagging (802.1Q) to identify which VLAN each packet belongs to.
+Typically used to connect switches to routers or other switches.
+Allows one physical link to carry multiple VLANs, saving cables.
 
 Cable type: Copper Straight-Through (PC → Switch), Trunk (Switch → Router)
 Router: Cisco 1941 with HWIC-2T
 Switch: default Packet Tracer switch (FastEthernet ports)
 PCs: 4 desktops
+
+Switch Configuration (Cisco 2960)
+enable
+configure terminal
+
+vlan 10           # Create VLAN 10 (Sales)
+name SALES
+exit
+
+vlan 20           # Create VLAN 20 (Engineering)
+name ENGINEERING
+exit
+
+interface fa0/1   # Assign PC0 to VLAN 10
+switchport mode access
+switchport access vlan 10
+exit
+
+interface fa0/2   # Assign PC1 to VLAN 10
+switchport mode access
+switchport access vlan 10
+exit
+
+interface fa0/3   # Assign PC2 to VLAN 20
+switchport mode access
+switchport access vlan 20
+exit
+
+interface fa0/4   # Assign PC3 to VLAN 20
+switchport mode access
+switchport access vlan 20
+exit
+
+interface fa0/24  # Connect to router as trunk
+switchport mode trunk
+exit
+
+vlan 10/20 → creates VLANs
+switchport mode access → port belongs to one VLAN
+switchport access vlan X → assigns VLAN to port
+switchport mode trunk → port carries multiple VLANs to router
+VLAN ID Range (1–4094)
+VLAN IDs are 12-bit numbers defined by the IEEE 802.1Q standard.
+0 → reserved for untagged/native VLAN
+4095 → reserved / invalid
+Each VLAN ID acts as a unique identifier for a VLAN, allowing switches and routers to correctly separate and route traffic.
+
+Router Configuration (Cisco 1941)
+enable
+configure terminal
+
+interface g0/0.10        # Subinterface for VLAN 10
+encapsulation dot1Q 10
+ip address 192.168.10.1 255.255.255.0
+exit
+
+interface g0/0.20        # Subinterface for VLAN 20
+encapsulation dot1Q 20
+ip address 192.168.20.1 255.255.255.0
+exit
+
+interface g0/0
+no shutdown
+exit
+write memory
+
+interface g0/0.X → creates logical subinterface for VLAN
+encapsulation dot1Q X → router knows which VLAN tag corresponds to subinterface
+ip address → sets default gateway for that VLAN
+no shutdown → enables physical interface
+write memory → saves config to persist after reboot
+
+VLAN 10: PC0 → 192.168.10.2, PC1 → 192.168.10.3, gateway 192.168.10.1
+VLAN 20: PC2 → 192.168.20.2, PC3 → 192.168.20.3, gateway 192.168.20.1
+------------------------------
+Testing Connectivity
+
+Test 1 — Same VLAN
+PC0 → ping 192.168.10.3
+Reply → PCs in same VLAN communicate directly via switch.
+
+Test 2 — Different VLANs
+PC0 → ping 192.168.20.2
+Reply → Inter-VLAN routing works via router-on-a-stick.
+
+Even if the PCs are in different VLANs, the ping will work only if Inter-VLAN routing is properly configured on the router.
+PC0 (VLAN 10) sends the packet to its default gateway, which is the router’s subinterface g0/0.10.
+The router sees that the packet is destined for VLAN 20 and forwards it to subinterface g0/0.20.
+From there, it goes to the switch and reaches PC2 (VLAN 20).
+
+What is Inter-VLAN?
+Inter-VLAN routing is the process that allows different VLANs to communicate with each other.
