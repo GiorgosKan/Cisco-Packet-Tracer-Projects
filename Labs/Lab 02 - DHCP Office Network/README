@@ -1,1 +1,73 @@
+Build a small office LAN: 1 router, 1 switch, 4 PCs.
+Configure DHCP on the router to assign IP addresses automatically.
+Test connectivity between PCs and the router.
 
+Cable type: Copper Straight-Through
+Router: Cisco 1941 with HWIC-2T installed
+Switch: default Packet Tracer switch
+PCs: 4 desktops
+
+DHCP Configuration on Router
+Enter router CLI:
+
+enable
+configure terminal
+
+ip dhcp pool OFFICE
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 8.8.8.8
+exit
+
+interface g0/0
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+end
+write memory
+
+PC Configuration
+On each PC → Desktop → IP Configuration → select DHCP.
+
+PCs will automatically receive:
+IPs: 192.168.10.2 – 192.168.10.5
+Subnet: 255.255.255.0
+Gateway: 192.168.10.1
+DNS: 8.8.8.8
+
+DHCP Process (What Happens When PCs Request an IP)
+DHCP Discover
+The PC sends a broadcast message on the network looking for a DHCP server.
+DHCP Offer
+The router (DHCP server) responds with an IP address offer from the pool, along with subnet mask, default gateway, and DNS.
+DHCP Request
+The PC requests the offered IP address from the DHCP server.
+DHCP Acknowledgment (ACK)
+The DHCP server confirms the IP assignment and provides full configuration.
+PC applies the IP, subnet mask, default gateway, and DNS settings.
+After this process, the PC can communicate on the network and ping other devices.
+
+DHCP Pool, Default Router, and DNS Explanation
+
+1. DHCP Pool OFFICE
+A DHCP pool is a range of IP addresses that the router can assign automatically to devices.
+In this lab, OFFICE is the name of the pool.
+Any PC configured for DHCP will request an IP from this pool.
+
+2. Default Router
+The default router (gateway) is the IP address that PCs use to send traffic outside their local network.
+In this lab, 192.168.10.1 is the router interface that acts as the gateway for all office PCs.
+
+3. DNS 8.8.8.8
+DNS (Domain Name System) translates domain names into IP addresses.
+8.8.8.8 is a public Google DNS server.
+PCs use it to resolve domain names when accessing the Internet (in future labs with Internet simulated).
+
+-----------------------------
+
+Testing Connectivity
+Test 1 - PC0 → PC3
+ping 192.168.10.5
+
+Should reply → PCs can communicate via switch.
+Test 2 - PC1 → Router
+ping 192.168.10.1
