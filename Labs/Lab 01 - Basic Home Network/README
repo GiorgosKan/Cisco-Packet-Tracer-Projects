@@ -8,15 +8,14 @@ PCs: Desktop → IP configuration via GUI.
 1. Router (Router0)
 
 Open CLI and run:
-
 enable
 configure terminal
 interface GigabitEthernet0/0
 ip address 192.168.1.1 255.255.255.0
-(*)no shutdown
+no shutdown
 exit
 end
-(*)write memory
+write memory
 
 2. PCs (PC0, PC1, PC2)
 Configure each PC through Desktop → IP Configuration:
