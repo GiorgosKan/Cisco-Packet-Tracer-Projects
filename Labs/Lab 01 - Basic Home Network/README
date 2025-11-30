@@ -6,7 +6,6 @@ Switch: default Packet Tracer switch (FastEthernet ports).
 PCs: Desktop → IP configuration via GUI.
 
 1. Router (Router0)
-
 Open CLI and run:
 enable
 configure terminal
