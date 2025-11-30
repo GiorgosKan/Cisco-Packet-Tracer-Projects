@@ -6,3 +6,4 @@ Test connectivity between PCs in the same VLAN and different VLANs.
 Cable type: Copper Straight-Through (PC → Switch), Trunk (Switch → Router)
 Router: Cisco 1941 with HWIC-2T
 Switch: default Packet Tracer switch (FastEthernet ports)
+PCs: 4 desktops
