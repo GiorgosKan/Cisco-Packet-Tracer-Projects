@@ -1,0 +1,58 @@
+Build a small home LAN: 1 router, 1 switch, 3 PCs. Assign static IPv4 addresses, fix link problems, and verify connectivity with ping.
+
+Cable type used: Copper Straight-Through.
+Router model: Cisco 1941 (GigabitEthernet0/0 used).
+Switch: default Packet Tracer switch (FastEthernet ports).
+PCs: Desktop → IP configuration via GUI.
+
+1. Router (Router0)
+
+Open CLI and run:
+
+enable
+configure terminal
+interface GigabitEthernet0/0
+ip address 192.168.1.1 255.255.255.0
+(*)no shutdown
+exit
+end
+(*)write memory
+
+2. PCs (PC0, PC1, PC2)
+Configure each PC through Desktop → IP Configuration:
+PC0: IP 192.168.1.2 /255.255.255.0, Gateway 192.168.1.1
+PC1: IP 192.168.1.3 /255.255.255.0, Gateway 192.168.1.1
+PC2: IP 192.168.1.4 /255.255.255.0, Gateway 192.168.1.1
+
+Why we installed HWIC-2T
+
+The Cisco 1941 router had no active interfaces, so it could not accept Ethernet/serial connections.
+Installing HWIC-2T enabled additional interface controllers so the router could bring ports online.
+
+What HWIC-2T is
+
+HWIC-2T = High-Speed WAN Interface Card with 2 serial ports.
+In Packet Tracer, adding it activates the router’s interfaces so it can be used in basic labs.
+
+Why we use no shutdown
+
+All router interfaces are disabled by default.
+no shutdown turns the interface on, changing it from administratively down to up.
+
+Why we use write memory
+
+write memory saves the running configuration to startup-config.
+Without it, the router loses all settings after a reboot.
+-------------------------------
+Connectivity Tests
+
+Now that all devices are configured correctly, we verify that the LAN works.
+Test 1 — PC0 → PC2
+From PC0 Command Prompt:
+ping 192.168.1.4
+Result: Successful replies → PC0 can reach PC2 through the switch and router interface.
+
+Test 2 — PC1 → Router
+From PC1 Command Prompt:
+ping 192.168.1.1
+Result: Successful replies → PC1 can reach the default gateway (router interface G0/0).
