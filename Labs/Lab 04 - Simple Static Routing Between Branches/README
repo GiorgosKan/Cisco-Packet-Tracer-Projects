@@ -1,0 +1,62 @@
+Scenario
+
+Scenario
+Two routers represent Branch A and Branch B in different buildings.
+Branch A LAN: 192.168.10.0/24
+Branch B LAN: 192.168.20.0/24
+
+Goal: Enable communication between PCs in different branches using static routing.
+
+Step-by-step configuration
+
+Router A (R1)
+conf t
+
+interface g0/0                          # LAN interface
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+end 
+
+interface s0/1/0                        # WAN interface
+ip address 10.10.10.1 255.255.255.252
+no shutdown
+end
+
+ip route 192.168.20.0 255.255.255.0 10.10.10.2  # Static route to Branch B
+end
+wr #save configuration
+
+Router B (R2)
+conf t
+interface g0/0                          # LAN interface
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+
+interface s0/1/0                        # WAN interface
+ip address 10.10.10.2 255.255.255.252
+no shutdown
+
+ip route 192.168.10.0 255.255.255.0 10.10.10.1  # Static route to Branch A
+end
+wr
+
+PC Configuration
+PC	  IP Address	    Subnet Mask	   Default Gateway
+PC-A	192.168.10.10	 255.255.255.0	 192.168.10.1
+PC-B	192.168.20.10	 255.255.255.0	 192.168.20.1
+
+Key Concepts
+Switch: Connects PCs inside the same LAN.
+Router: Connects different networks/branches (default gateway).
+Serial port / WAN link: Connects routers in different buildings.
+Static route: Manually tells the router where to send packets for a specific network.
+HWIC-2T module: Adds Serial ports to routers.
+Default gateway: Router interface IP inside the LAN (e.g., 192.168.20.1).
+DCE/DTE cable: Needed for Serial links; DCE router provides clock rate - In this lab We use dte so it doesn't need clockrate.
+
+----------------------------
+
+Testing
+From PC-A: ping 192.168.20.10 → should reply.
+From PC-B: ping 192.168.10.10 → should reply.
+Confirms full connectivity between branches.
