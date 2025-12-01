@@ -1,6 +1,4 @@
 Scenario
-
-Scenario
 Two routers represent Branch A and Branch B in different buildings.
 Branch A LAN: 192.168.10.0/24
 Branch B LAN: 192.168.20.0/24
