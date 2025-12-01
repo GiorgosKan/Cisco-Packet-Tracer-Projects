@@ -1,4 +1,17 @@
-Viewing in Physical Workspace (Packet Tracer)
-In Packet Tracer, you can switch to the Physical Workspace tab.
+About This Repository
+
+This repository contains a collection of Cisco Packet Tracer labs designed to gradually introduce and expand knowledge in computer networking. The labs start with simple, fundamental scenarios, 
+focusing on basic network connections and concepts, and progressively increase in complexity to cover a wide range of topics in the networking world.
+
+All labs are original creations — every idea, scenario, implementation, and explanation comes entirely from my own work, developed from scratch.
+
+These labs are free to use: you are welcome to download the .pkt files, explore how they work, experiment, and learn from them. You can also build upon these labs to create your own new scenarios, add questions, 
+or extend them to further enhance your networking skills.
+
+Thank you for checking them out!
+
+
+
+TIP: In Packet Tracer, you can switch to the Physical Workspace tab.
 There, you can see the devices mounted in racks, just like a real server room.
 You can check the layout, connections, and device placement, which helps visualize the network configuration.
