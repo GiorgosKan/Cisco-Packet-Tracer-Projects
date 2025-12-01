@@ -1,0 +1,113 @@
+This lab demonstrates how to set up a basic wireless network using a wireless router,
+two laptops are configured with wireless network adapters and connect securely to the WiFi network using WPA2 encryption.
+
+Configure a wireless router with SSID and WPA2 security.
+Install wireless network modules on laptops (WPC300N).
+Connect both laptops to the wireless network.
+Test connectivity (ping) between wireless clients.
+
+1 Wireless Router (WRT300N)
+2 Laptops
+
+Wireless Router
+Network Name (SSID): Office-WiFi
+Security Mode: WPA2-Personal
+Encryption: AES
+Passphrase: StrongPassword123!
+---------------------------------------
+*Wireless Security Modes*
+-WEP (Wired Equivalent Privacy)
+Description:
+Old encryption method using static keys (64-bit or 128-bit).
+
+Pros:
+Compatible with very old devices.
+
+Cons:
+Completely insecure.
+Breakable in seconds with common tools (aircrack-ng).
+Weak encryption algorithm (RC4).
+
+-WPA (Wi-Fi Protected Access)
+Description:
+Improved security over WEP using TKIP encryption.
+
+Pros:
+Better than WEP.
+Works with older hardware.
+
+Cons:
+Still vulnerable to several attacks.
+TKIP is outdated and considered weak today.
+
+-WPA2 (Wi-Fi Protected Access II) — RECOMMENDED
+Description:
+Modern, strong security standard using AES encryption.
+
+Pros:
+Strong security.
+Widely used and supported.
+AES encryption is secure and trusted.
+
+Cons:
+Requires relatively newer hardware (but almost all devices support it now).
+
+WPA3 (Newest Standard)
+
+Description:
+Strongest modern security standard, resistant to password-guessing attacks. Uses SAE (Simultaneous Authentication of Equals) 
+for secure key exchange and AES-128 / AES-256 encryption. Enterprise mode can use a 192-bit security suite.
+
+Pros:
+Very strong security
+Protects against brute-force attacks
+Modern encryption (AES + ECC / SAE)
+                   
+Cons:
+Requires new hardware
+
+*Key Differences beetwin Personal & Enterprise*
+
+Authentication:
+Personal → everyone uses the same password (PSK)
+Enterprise → each user has a unique username/password verified by a RADIUS server
+
+Complexity:
+Personal → easy to configure
+Enterprise → requires RADIUS server, more configuration
+
+Security:
+Enterprise is stronger in environments with many users, because compromising one user does not compromise the network.
+---------------------------------
+Ensure DHCP Server = Enabled
+Default Gateway (router IP): 192.168.1.1
+DHCP pool example:
+Starting IP: 192.168.1.100
+Subnet Mask: 255.255.255.0
+
+Packet Tracer laptops do not have WiFi by default.
+Click each laptop → Config tab
+Remove the default FastEthernet NIC
+Add WPC300N Wireless Module
+Power the laptop back on
+
+Connect Laptops to WiFi
+Laptop → Desktop → PC Wireless
+Click Refresh
+Select Office-WiFi
+Enter the WPA2 password: StrongPassword123!
+After connecting, verify that each laptop obtains an IP via DHCP with ipconfig.
+
+-------------
+
+Testing:
+
+Laptop 1: ping 192.168.1.100 
+Laptop 2: ping 192.168.1.101 
+Both laptops receive IP addresses from the router
+Ping between laptops is successful
+Wireless network is secured using WPA2
+
+
+
+
